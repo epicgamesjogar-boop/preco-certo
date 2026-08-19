@@ -15,7 +15,7 @@ Responda APENAS com um JSON válido, sem markdown, sem texto antes ou depois, ex
 {"name": "nome curto e claro do produto", "brand": "marca visível na embalagem, ou 'não identificada'", "category": "categoria geral do produto", "search_query": "3 a 5 palavras genéricas em português para buscar este produto OU equivalentes de outras marcas em um marketplace, sem incluir a marca"}`;
 
   const response = await fetch(
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent",
     {
       method: "POST",
       headers: {
