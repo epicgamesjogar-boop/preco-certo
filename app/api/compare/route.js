@@ -65,9 +65,17 @@ Responda APENAS com um JSON válido, sem markdown, sem texto antes ou depois, ex
 
 async function searchPrices(query) {
   const url = `https://api.mercadolibre.com/sites/MLB/search?q=${encodeURIComponent(query)}&limit=25`;
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (compatible; PrecoCertoApp/1.0; +https://vercel.app)",
+      Accept: "application/json",
+    },
+  });
   if (!response.ok) {
-    throw new Error("Erro ao buscar preços no Mercado Livre.");
+    const errText = await response.text();
+    throw new Error(
+      `Erro ao buscar preços no Mercado Livre (status ${response.status}): ${errText.slice(0, 200)}`
+    );
   }
   const data = await response.json();
   const results = (data.results || [])
